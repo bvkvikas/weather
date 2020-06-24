@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 const Cards = props => {
   //console.log(props);
   const {
-    data: { current, location }
+    data: { datetime, temp, city_name }
   } = props;
 
   const st = useStyles();
@@ -48,12 +48,12 @@ const Cards = props => {
       <Grid container spacing={2} justify='center'>
         <Grid xs={12} md={12} item component={Card} className={styles.card}>
           <CardContent className={cx(st.totalCases)}>
-            {current ? (
+            {temp ? (
               <div>
-                <Typography className={st.heading}>{location.name}</Typography>
-                <Typography variant='h5'>{`Current Temperature : ${current.temperature}`}</Typography>
+                <Typography className={st.heading}>{city_name}</Typography>
+                <Typography variant='h5'>{`Current Temperature : ${temp}`}</Typography>
                 <Typography color='textSecondary'>
-                  {`Local time : ${location.localtime}`}
+                  {`Local time : ${datetime}`}
                 </Typography>
               </div>
             ) : (

@@ -13,10 +13,10 @@ class Dashboard extends Component {
   }
   async componentDidMount() {
     const response = await axios.get(
-      'http://api.weatherstack.com/current?query=Boston&access_key=9ccafcf1f73a0a39c5de6125a4fde904'
+      'https://api.weatherbit.io/v2.0/current?city=Boston&country=US&key=2a69527e290c423db3f2d9e0ce84428c'
     );
-    console.log(response.data);
-    this.setState({ data: response.data });
+    console.log(response.data.data[0]);
+    this.setState({ data: response.data.data[0] });
   }
   render() {
     return (
