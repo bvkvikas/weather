@@ -1,3 +1,3 @@
-### `npm run build` fails to minify
+### Weather Application
 
 A Weather App built as a part of mintbean Weather Hack challenge
