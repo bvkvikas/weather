@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 
 const ForcastComponent = data => {
   const classes = useStyles();
-  console.log(data);
   return (
     <Paper className={classes.paper}>
       <List className={classes.list}>

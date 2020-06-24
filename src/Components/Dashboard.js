@@ -9,13 +9,9 @@ import {
   AppBar
 } from '@material-ui/core';
 import Cards from './Cards/Cards';
-import cx from 'classnames';
 import styles from './Dashboard.module.css';
-import { makeStyles } from '@material-ui/core/styles';
-
 import Heading from './Heading/Heading';
 import ForcastComponent from './ForcastComponent';
-import { tsMethodSignature } from '@babel/types';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -44,7 +40,6 @@ class Dashboard extends Component {
     const forcast = await axios.get(
       `https://api.weatherbit.io/v2.0/forecast/daily?city=${this.state.city}&country=${this.state.country}&key=2a69527e290c423db3f2d9e0ce84428c`
     );
-    console.log(forcast.data.data);
     this.setState({ forcast: forcast.data.data });
   }
 
@@ -75,7 +70,7 @@ class Dashboard extends Component {
         <div className={styles.main}>
           <Grid container spacing={2} justify='center'>
             <Grid item xs={12} sm={10}>
-              <div className={styles.container}>
+              <div>
                 <div className={styles.countryPicker}>
                   <Cards data={this.state.data} />
                 </div>
@@ -100,7 +95,9 @@ class Dashboard extends Component {
             </form>
           </Grid>
           <Heading title={this.state.title} />
-          <ForcastComponent data={this.state.forcast} />
+          <div className={styles.container}>
+            <ForcastComponent data={this.state.forcast} />
+          </div>
         </div>
       </div>
     );

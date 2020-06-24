@@ -17,15 +17,15 @@ const useStyles = makeStyles({
     color: 'black',
     fontSize: 20
   },
-  activeCases: {
-    backgroundColor: 'rgba(0, 0, 255, 0.05)',
-    color: 'rgba(0, 0, 255)'
+  recovered: {
+    backgroundColor: 'rgba(141, 202, 103, 0.05)',
+    color: 'rgba(141, 202, 103)'
   }
 });
 
 const Cards = props => {
   const {
-    data: { temp, city_name, weather, max_temp, min_temp, datetime }
+    data: { temp, weather, max_temp, min_temp, datetime }
   } = props;
 
   const st = useStyles();
@@ -34,17 +34,9 @@ const Cards = props => {
     <div className={styles.container}>
       <Grid container spacing={2} justify='center'>
         <Grid xs={12} md={12} item component={Card} className={styles.card}>
-          <CardContent className={cx(st.activeCases)}>
+          <CardContent className={cx(st.recovered)}>
             {temp ? (
               <div>
-                <Typography
-                  className={st.heading}
-                  variant='h1'
-                  component='h1'
-                  gutterBottom
-                >
-                  {city_name}
-                </Typography>
                 <Typography variant='h6'>{`Date: ${datetime}`}</Typography>
                 <Typography variant='h6'>{`Max temp : ${max_temp}`}</Typography>
                 <Typography variant='h6'>{`Min temp : ${min_temp}`}</Typography>
