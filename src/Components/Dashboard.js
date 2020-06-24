@@ -13,6 +13,10 @@ import cx from 'classnames';
 import styles from './Dashboard.module.css';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Heading from './Heading/Heading';
+import ForcastComponent from './ForcastComponent';
+import { tsMethodSignature } from '@babel/types';
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -20,10 +24,8 @@ class Dashboard extends Component {
       data: {},
       city: 'New York',
       country: 'US',
-      errors: {
-        city: '',
-        country: ''
-      }
+      title: 'New York',
+      forcast: []
     };
   }
   async componentDidMount() {
@@ -37,14 +39,20 @@ class Dashboard extends Component {
     const response = await axios.get(
       `https://api.weatherbit.io/v2.0/current?city=${this.state.city}&country=${this.state.country}&key=2a69527e290c423db3f2d9e0ce84428c`
     );
-    console.log(response.data.data[0]);
     this.setState({ data: response.data.data[0] });
+
+    const forcast = await axios.get(
+      `https://api.weatherbit.io/v2.0/forecast/daily?city=${this.state.city}&country=${this.state.country}&key=2a69527e290c423db3f2d9e0ce84428c`
+    );
+    console.log(forcast.data.data);
+    this.setState({ forcast: forcast.data.data });
   }
 
   onButtonClick = event => {
     event.preventDefault();
     if (this.state.city.length >= 3 && this.state.country.length === 2) {
       this.getData();
+      this.setState({ title: this.state.city });
     } else {
       if (this.state.city.length < 3) {
         alert('Enter valid city ');
@@ -91,6 +99,8 @@ class Dashboard extends Component {
               <input type='submit' value='Submit' />
             </form>
           </Grid>
+          <Heading title={this.state.title} />
+          <ForcastComponent data={this.state.forcast} />
         </div>
       </div>
     );

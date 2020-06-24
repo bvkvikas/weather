@@ -17,27 +17,15 @@ const useStyles = makeStyles({
     color: 'black',
     fontSize: 20
   },
-  totalCases: {
-    backgroundColor: 'rgba(255, 7, 58, 0.05)',
-    color: 'rgba(255, 7, 58)'
-  },
   activeCases: {
     backgroundColor: 'rgba(0, 0, 255, 0.05)',
     color: 'rgba(0, 0, 255)'
-  },
-  recovered: {
-    backgroundColor: 'rgba(141, 202, 103, 0.05)',
-    color: 'rgba(141, 202, 103)'
-  },
-  deceased: {
-    backgroundColor: 'rgba(119, 119, 119,0.05)',
-    color: 'rgba(119, 119, 119)'
   }
 });
 
 const Cards = props => {
   const {
-    data: { sunrise, sunset, temp, city_name, weather }
+    data: { temp, city_name, weather, max_temp, min_temp, datetime }
   } = props;
 
   const st = useStyles();
@@ -57,11 +45,10 @@ const Cards = props => {
                 >
                   {city_name}
                 </Typography>
-                <Typography variant='h5'>
-                  {`Current Temperature : ${temp}`}
-                </Typography>
-                <Typography variant='h6'>{`Sunrise : ${sunrise}`}</Typography>
-                <Typography variant='h6'>{`Sunset : ${sunset}`}</Typography>
+                <Typography variant='h6'>{`Date: ${datetime}`}</Typography>
+                <Typography variant='h6'>{`Max temp : ${max_temp}`}</Typography>
+                <Typography variant='h6'>{`Min temp : ${min_temp}`}</Typography>
+
                 <Typography color='textSecondary'>
                   {weather.description}
                 </Typography>
